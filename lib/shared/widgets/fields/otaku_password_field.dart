@@ -6,6 +6,7 @@ class OtakuPasswordField extends StatefulWidget {
       required this.fillColor,
       required this.focusNode,
       required this.validator,
+      required this.inputAction,
       this.controller})
       : super(key: key);
 
@@ -13,6 +14,7 @@ class OtakuPasswordField extends StatefulWidget {
   final FocusNode focusNode;
   final String? Function(String?) validator;
   final TextEditingController? controller;
+  final TextInputAction inputAction;
 
   @override
   State<OtakuPasswordField> createState() => _OtakuPasswordFieldState();
@@ -26,9 +28,11 @@ class _OtakuPasswordFieldState extends State<OtakuPasswordField> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: TextFormField(
-        style: Theme.of(context).textTheme.bodyText1,
+        style: Theme.of(context).textTheme.bodyText1!.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+            ),
         cursorColor: Theme.of(context).colorScheme.tertiary,
-        textInputAction: TextInputAction.done,
+        textInputAction: widget.inputAction,
         focusNode: widget.focusNode,
         obscureText: hidePassword,
         validator: widget.validator,
@@ -71,8 +75,10 @@ class _OtakuPasswordFieldState extends State<OtakuPasswordField> {
               },
               child: Text(
                 'Show',
-                style: Theme.of(context).textTheme.bodyText1!
-                    .copyWith(decoration: TextDecoration.underline),
+                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                      decoration: TextDecoration.underline,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
               ),
             ),
           ),

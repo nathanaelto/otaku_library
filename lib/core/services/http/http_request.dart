@@ -10,10 +10,11 @@ class HttpRequest {
       'Content-Type' : 'application/json'
     };
 
-    if (headers != null) {
-      defaultHeaders.addAll(headers);
+    if (headers != null && headers.containsKey('Content-Type')) {
+      return headers;
     }
 
+    defaultHeaders.addAll(headers ?? {});
     return defaultHeaders;
   }
 

@@ -44,7 +44,7 @@ class _CBZReaderState extends State<CBZReader> {
 
   @override
   Widget build(BuildContext context) {
-    var wid = FutureBuilder(
+    return FutureBuilder(
       future: loadImages(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.done) {
@@ -56,6 +56,5 @@ class _CBZReaderState extends State<CBZReader> {
         }
       },
     );
-    return wid;
   }
 }

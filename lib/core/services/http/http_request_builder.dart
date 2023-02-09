@@ -44,7 +44,7 @@ class HttpRequestBuilder {
   Future<http.Response> build() async {
     if (_uri == null || _method == null) {
       print(toString());
-      throw const HttpException('HttpRequestBuilder => _uri or _mthod can\'t be null .');
+      throw const HttpException('HttpRequestBuilder => _uri or _method can\'t be null .');
     }
 
     switch (_method) {

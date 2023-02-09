@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 
 class RecallBackButton extends StatelessWidget {
-  const RecallBackButton({Key? key}) : super(key: key);
+  final VoidCallback onBack;
+  const RecallBackButton({Key? key, required this.onBack}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        // Navigator.pop(context);
-        print("Back");
-      },
+      onTap: onBack,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
         child: Row(

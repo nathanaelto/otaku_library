@@ -21,6 +21,18 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const Spacer(),
+              Image.asset(
+                'assets/icon/icon.png',
+                width: 250,
+              ),
+              const Spacer(),
+              Text(
+                'Bienvenue sur Otaku Library',
+                textAlign: TextAlign.center,
+                style: Theme.of(context).textTheme.headline2,
+              ),
+              const Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -39,6 +51,7 @@ class WelcomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
+              const Spacer(),
             ],
           ),
         ),

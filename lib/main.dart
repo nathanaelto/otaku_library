@@ -8,7 +8,7 @@ import 'package:OtakuLibrary/core/models/common/service_response.dart';
 import 'package:OtakuLibrary/core/services/api/authentication/authentication.service.dart';
 import 'package:OtakuLibrary/core/services/env/environment.service.dart';
 import 'package:OtakuLibrary/core/services/secure_storage/authentication/authentication.dao.dart';
-import 'package:OtakuLibrary/in_app/home.screen.dart';
+import 'package:OtakuLibrary/in_app/home/home.screen.dart';
 import 'package:OtakuLibrary/shared/otaku_library_theme.dart';
 import 'package:OtakuLibrary/shared/widgets/buttons/otaku_text_button.dart';
 import 'package:OtakuLibrary/shared/widgets/buttons/recall_back_button.dart';

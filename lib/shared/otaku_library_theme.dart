@@ -15,7 +15,7 @@ ThemeData otakuLibraryTheme() {
           fontSize: 72.0, fontWeight: FontWeight.bold, color: Colors.white),
       headline2: TextStyle(
           fontSize: 36.0, fontStyle: FontStyle.italic, color: Colors.white),
-      bodyText1: TextStyle(fontSize: 18.0, color: Colors.white),
+      bodyText1: TextStyle(fontSize: 15.0, color: Colors.white),
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: OutlineInputBorder(

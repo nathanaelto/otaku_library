@@ -6,7 +6,7 @@ import 'package:OtakuLibrary/core/models/authentication/login_response.dto.dart'
 import 'package:OtakuLibrary/core/models/common/service_response.dart';
 import 'package:OtakuLibrary/core/services/api/authentication/authentication.service.dart';
 import 'package:OtakuLibrary/core/services/secure_storage/authentication/authentication.dao.dart';
-import 'package:OtakuLibrary/in_app/home.screen.dart';
+import 'package:OtakuLibrary/in_app/home/home.screen.dart';
 import 'package:OtakuLibrary/shared/widgets/buttons/otaku_text_button.dart';
 import 'package:OtakuLibrary/shared/widgets/fields/otaku_check_box.dart';
 import 'package:OtakuLibrary/shared/widgets/fields/otaku_password_field.dart';

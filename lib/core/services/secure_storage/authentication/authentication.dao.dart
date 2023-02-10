@@ -8,30 +8,30 @@ class AuthenticationDao extends SecureStorageService {
   static final String loginKey = '${seed}_LOGIN_KEY';
   static final String passwordKey = '${seed}_PASSWORD_KEY';
 
-  Future<void> storeToken(String token) async {
-    set(tokenKey, token);
+  static Future<void> storeToken(String token) async {
+    SecureStorageService.set(tokenKey, token);
   }
 
-  Future<void> storeCredentials(String login, String password) async {
-    set(loginKey, login);
-    set(passwordKey, password);
+  static Future<void> storeCredentials(String login, String password) async {
+    SecureStorageService.set(loginKey, login);
+    SecureStorageService.set(passwordKey, password);
   }
 
-  Future<String?> getToken() async {
-    return get(tokenKey);
+  static Future<String?> getToken() async {
+    return SecureStorageService.get(tokenKey);
   }
 
-  Future<String?> getLogin() async {
-    return get(loginKey);
+  static Future<String?> getLogin() async {
+    return SecureStorageService.get(loginKey);
   }
 
-  Future<String?> getPassword() async {
-    return get(passwordKey);
+  static Future<String?> getPassword() async {
+    return SecureStorageService.get(passwordKey);
   }
 
-  Future<void> deleteAll() async {
-    await delete(tokenKey);
-    await delete(loginKey);
-    await delete(passwordKey);
+  static Future<void> deleteAll() async {
+    await SecureStorageService.delete(tokenKey);
+    await SecureStorageService.delete(loginKey);
+    await SecureStorageService.delete(passwordKey);
   }
 }

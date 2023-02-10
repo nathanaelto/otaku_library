@@ -42,7 +42,7 @@ class _OtakuPasswordFieldState extends State<OtakuPasswordField> {
           fillColor: widget.fillColor,
           border: Theme.of(context).inputDecorationTheme.border,
           enabledBorder: Theme.of(context).inputDecorationTheme.border,
-          hintText: 'Password',
+          hintText: 'Mot de passe',
           hintStyle: Theme.of(context).inputDecorationTheme.hintStyle,
           prefixIcon: Padding(
             padding: const EdgeInsets.only(right: 16),

@@ -12,7 +12,7 @@ class CreateUserDto implements Encodable {
     return {
       'email': email,
       'password': password,
-      'username': pseudo,
+      'pseudo': pseudo,
     };
   }
 

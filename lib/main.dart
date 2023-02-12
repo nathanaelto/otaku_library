@@ -9,6 +9,7 @@ import 'package:OtakuLibrary/core/services/api/authentication/authentication.ser
 import 'package:OtakuLibrary/core/services/env/environment.service.dart';
 import 'package:OtakuLibrary/core/services/secure_storage/authentication/authentication.dao.dart';
 import 'package:OtakuLibrary/in_app/book/book.screen.dart';
+import 'package:OtakuLibrary/in_app/chapter/chapter_reader.screen.dart';
 import 'package:OtakuLibrary/in_app/home/home.screen.dart';
 import 'package:OtakuLibrary/shared/otaku_library_theme.dart';
 import 'package:OtakuLibrary/shared/widgets/buttons/otaku_text_button.dart';
@@ -72,6 +73,7 @@ class OtakuLibraryApp extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         BookScreen.routeName: (context) => const BookScreen(),
+        ChapterReaderScreen.routeName: (context) => const ChapterReaderScreen(),
       }
     );
   }

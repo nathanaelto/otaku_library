@@ -1,4 +1,5 @@
 import 'package:OtakuLibrary/core/models/chapters/chapter.dart';
+import 'package:OtakuLibrary/in_app/chapter/chapter_reader.screen.dart';
 import 'package:flutter/material.dart';
 
 class CardChapter extends StatelessWidget {
@@ -9,7 +10,7 @@ class CardChapter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: _goToReadChapter,
+      onTap: () => _goToReadChapter(context),
       child: Card(
           margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5.0),
           child: Row(
@@ -34,8 +35,8 @@ class CardChapter extends StatelessWidget {
     );
   }
 
-  void _goToReadChapter() {
-    print("read chapter");
+  void _goToReadChapter(BuildContext context) {
+    Navigator.of(context).pushNamed(ChapterReaderScreen.routeName, arguments: chapter.id);
   }
 
   void _download() {

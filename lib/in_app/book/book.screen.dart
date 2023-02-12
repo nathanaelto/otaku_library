@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:OtakuLibrary/core/models/books/book_chapters.dart';
@@ -98,7 +97,7 @@ class _BookScreenState extends State<BookScreen> {
 
   Widget _buildBody(BookChapters bookChapters, Uint8List image) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.8,
+      height: MediaQuery.of(context).size.height * 0.85,
       child: ListView(
         children: _buildHead(bookChapters, image) +
             _buildChapters(bookChapters.chapters),

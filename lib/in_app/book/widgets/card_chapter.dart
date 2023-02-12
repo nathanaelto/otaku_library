@@ -20,15 +20,12 @@ class CardChapter extends StatelessWidget {
                 style: Theme.of(context).textTheme.bodyText1,
               ),
               const Spacer(),
-              IconButton(
-                onPressed: _download,
-                icon: const Icon(
-                  Icons.download,
-                  size: 25.0,
-                  textDirection: TextDirection.ltr,
-                  semanticLabel:
-                      'Icon', // Announced in accessibility modes (e.g TalkBack/VoiceOver). This label does not show in the UI.
-                ),
+              const Icon(
+                Icons.read_more,
+                size: 40.0,
+                textDirection: TextDirection.ltr,
+                semanticLabel:
+                'Icon', // Announced in accessibility modes (e.g TalkBack/VoiceOver). This label does not show in the UI.
               ),
             ],
           )),
@@ -36,11 +33,7 @@ class CardChapter extends StatelessWidget {
   }
 
   void _goToReadChapter(BuildContext context) {
-    print('${chapter.bookId} ${chapter.id}');
     Navigator.of(context).pushNamed(ChapterReaderScreen.routeName, arguments: chapter.id);
   }
 
-  void _download() {
-    print("download chapter");
-  }
 }

@@ -15,7 +15,7 @@ class CardManda extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _fetchImage(context),
+      future: _fetchImage(),
       builder: (BuildContext context, AsyncSnapshot<Widget> widget) {
         if (widget.connectionState != ConnectionState.done) {
           return const Center(
@@ -38,7 +38,7 @@ class CardManda extends StatelessWidget {
     );
   }
 
-  Future<Widget> _fetchImage(BuildContext context) async {
+  Future<Widget> _fetchImage() async {
     ServiceResponse<Uint8List> serviceResponse =
         await BookService.getBookImage(book.id);
     if (serviceResponse.hasError) {

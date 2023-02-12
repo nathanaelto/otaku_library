@@ -1,7 +1,7 @@
 import 'package:OtakuLibrary/core/services/env/environment.service.dart';
 import 'package:OtakuLibrary/core/services/secure_storage/secure_storage.service.dart';
 
-class AuthenticationDao extends SecureStorageService {
+class AuthenticationDao {
   static final String seed = EnvironmentService.get(EnvironmentVariable.SEED);
 
   static final String tokenKey = '${seed}_TOKEN_KEY';

@@ -36,6 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: const Icon(Icons.arrow_back),
         title: Text(
           'Se connecter',
           style: Theme.of(context).textTheme.headline2,

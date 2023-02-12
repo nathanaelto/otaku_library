@@ -2,9 +2,7 @@ import 'package:OtakuLibrary/core/services/secure_storage/authentication/authent
 
 class SecureApiService {
 
-  final AuthenticationDao _authenticationDao = AuthenticationDao();
-
-  Future<Map<String, String>> getHeaders() async {
+  static Future<Map<String, String>> getHeaders() async {
     String? token = await AuthenticationDao.getToken();
     if (token != null) {
       return {

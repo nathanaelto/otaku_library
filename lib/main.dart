@@ -8,6 +8,7 @@ import 'package:OtakuLibrary/core/models/common/service_response.dart';
 import 'package:OtakuLibrary/core/services/api/authentication/authentication.service.dart';
 import 'package:OtakuLibrary/core/services/env/environment.service.dart';
 import 'package:OtakuLibrary/core/services/secure_storage/authentication/authentication.dao.dart';
+import 'package:OtakuLibrary/in_app/book/book.screen.dart';
 import 'package:OtakuLibrary/in_app/home/home.screen.dart';
 import 'package:OtakuLibrary/shared/otaku_library_theme.dart';
 import 'package:OtakuLibrary/shared/widgets/buttons/otaku_text_button.dart';
@@ -70,118 +71,8 @@ class OtakuLibraryApp extends StatelessWidget {
         HomeScreen.routeName: (context) => const HomeScreen(),
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
+        BookScreen.routeName: (context) => const BookScreen(),
       }
-    );
-  }
-}
-
-class HomeView extends StatelessWidget {
-  HomeView({Key? key}) : super(key: key);
-
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
-  TextEditingController pseudoController = TextEditingController();
-  TextEditingController confirmPasswordValidator = TextEditingController();
-
-  final List<FocusNode> _focusNodes = [
-    FocusNode(),
-    FocusNode(),
-    FocusNode(),
-    FocusNode()
-  ];
-  ValueNotifier<bool> checkBox = ValueNotifier(false);
-
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-                child: RecallBackButton(
-                  onBack: () {
-                    print("Back");
-                  },
-                ),
-              ),
-              Text(
-                'Home',
-                style: Theme.of(context).textTheme.headline1,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OtakuTextButton(
-                    color:
-                        Theme.of(context).colorScheme.tertiary.withOpacity(0.7),
-                    text: "Login",
-                    onPressed: () => print("Login"),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.all(10),
-                  ),
-                  OtakuTextButton(
-                    text: "Register",
-                    onPressed: () => print("Register"),
-                  ),
-                ],
-              ),
-              ValueListenableBuilder<bool>(
-                valueListenable: checkBox,
-                builder: (context, checkBoxValue, _) {
-                  return OtakuCheckBox(
-                    text: "Check me",
-                    isChecked: checkBoxValue,
-                    onChanged: (bool? value) {
-                      if (value != null) {
-                        checkBox.value = value;
-                        checkBox.notifyListeners();
-                      }
-                    },
-                  );
-                },
-              ),
-              OtakuTextFormField(
-                hint: "Email",
-                icon: Icons.email,
-                fillColor: Colors.white,
-                inputType: TextInputType.emailAddress,
-                inputAction: TextInputAction.next,
-                focusNode: _focusNodes[0],
-                validator: emailValidator,
-                controller: emailController,
-              ),
-              OtakuTextFormField(
-                hint: "Pseudo",
-                icon: Icons.person,
-                fillColor: Colors.white,
-                inputType: TextInputType.text,
-                inputAction: TextInputAction.next,
-                focusNode: _focusNodes[1],
-                validator: pseudoValidator,
-                controller: pseudoController,
-              ),
-              OtakuPasswordField(
-                fillColor: Colors.white,
-                focusNode: _focusNodes[2],
-                validator: passwordValidator,
-                inputAction: TextInputAction.next,
-                controller: passwordController,
-              ),
-              OtakuPasswordField(
-                fillColor: Colors.white,
-                focusNode: _focusNodes[3],
-                validator: passwordValidator,
-                inputAction: TextInputAction.done,
-                controller: confirmPasswordValidator,
-              ),
-            ],
-          ),
-        ),
-      ),
     );
   }
 }

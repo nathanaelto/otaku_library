@@ -11,7 +11,7 @@ import 'package:path_provider/path_provider.dart';
 
 class ChapterReaderScreen extends StatelessWidget {
   static const String routeName = '/chapterReader';
-  List<String> _files = [];
+  final List<String> _files = [];
 
   ChapterReaderScreen({Key? key}) : super(key: key);
 

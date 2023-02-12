@@ -97,7 +97,7 @@ class _BookScreenState extends State<BookScreen> {
 
   Widget _buildBody(BookChapters bookChapters, Uint8List image) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.83,
+      height: MediaQuery.of(context).size.height * 0.8,
       child: ListView(
         children: _buildHead(bookChapters, image) +
             _buildChapters(bookChapters.chapters),

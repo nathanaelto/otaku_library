@@ -1,7 +1,5 @@
-import 'package:OtakuLibrary/CBZReader.dart';
 import 'package:OtakuLibrary/authentication/login.screen.dart';
 import 'package:OtakuLibrary/authentication/register.screen.dart';
-import 'package:OtakuLibrary/authentication/validators/validators.dart';
 import 'package:OtakuLibrary/core/models/authentication/login.dto.dart';
 import 'package:OtakuLibrary/core/models/authentication/login_response.dto.dart';
 import 'package:OtakuLibrary/core/models/common/service_response.dart';
@@ -12,11 +10,6 @@ import 'package:OtakuLibrary/in_app/book/book.screen.dart';
 import 'package:OtakuLibrary/in_app/chapter/chapter_reader.screen.dart';
 import 'package:OtakuLibrary/in_app/home/home.screen.dart';
 import 'package:OtakuLibrary/shared/otaku_library_theme.dart';
-import 'package:OtakuLibrary/shared/widgets/buttons/otaku_text_button.dart';
-import 'package:OtakuLibrary/shared/widgets/buttons/recall_back_button.dart';
-import 'package:OtakuLibrary/shared/widgets/fields/otaku_check_box.dart';
-import 'package:OtakuLibrary/shared/widgets/fields/otaku_password_field.dart';
-import 'package:OtakuLibrary/shared/widgets/fields/otaku_text_form_field.dart';
 import 'package:OtakuLibrary/welcome.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -73,7 +66,7 @@ class OtakuLibraryApp extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         BookScreen.routeName: (context) => const BookScreen(),
-        ChapterReaderScreen.routeName: (context) => const ChapterReaderScreen(),
+        ChapterReaderScreen.routeName: (context) => ChapterReaderScreen(),
       }
     );
   }

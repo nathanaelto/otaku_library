@@ -11,53 +11,64 @@ import 'package:path_provider/path_provider.dart';
 
 class ChapterReaderScreen extends StatelessWidget {
   static const String routeName = '/chapterReader';
+  List<String> _files = [];
 
-  const ChapterReaderScreen({Key? key}) : super(key: key);
+  ChapterReaderScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final String chapterId = ModalRoute.of(context)!.settings.arguments as String;
-    return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * 0.06,
-              child: Row(
-                children: [
-                  RecallBackButton(
-                    onBack: () => Navigator.of(context).pop(),
-                  ),
-                ],
-              ),
-            ),
-            const Divider(
-              color: Colors.black,
-              thickness: 1,
-            ),
-            FutureBuilder(
-              future: _fetchChapter(chapterId),
-              builder: (BuildContext context, AsyncSnapshot<Widget> widget) {
-                if (widget.connectionState != ConnectionState.done) {
-                  return const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.blue,
+    return WillPopScope(
+      onWillPop: () async {
+        _removeFilesChapters();
+        Navigator.of(context).pop();
+        return false;
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Column(
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.06,
+                child: Row(
+                  children: [
+                    RecallBackButton(
+                      onBack: () {
+                        _removeFilesChapters();
+                        Navigator.of(context).pop();
+                      },
                     ),
+                  ],
+                ),
+              ),
+              const Divider(
+                color: Colors.black,
+                thickness: 1,
+              ),
+              FutureBuilder(
+                future: _fetchChapter(chapterId),
+                builder: (BuildContext context, AsyncSnapshot<Widget> widget) {
+                  if (widget.connectionState != ConnectionState.done) {
+                    return const Center(
+                      child: CircularProgressIndicator(
+                        color: Colors.blue,
+                      ),
+                    );
+                  }
+
+                  if (widget.hasError) {
+                    return const OtakuError();
+                  }
+
+                  return Expanded(
+                    child: widget.data!,
                   );
-                }
-
-                if (widget.hasError) {
-                  return const OtakuError();
-                }
-
-                return Expanded(
-                  child: widget.data!,
-                );
-              },
-            )
-          ],
+                },
+              )
+            ],
+          )
         )
-      )
+      ),
     );
   }
 
@@ -69,10 +80,10 @@ class ChapterReaderScreen extends StatelessWidget {
     if (serviceResponse.data == null) {
       return const OtakuError();
     }
-    return await _buildReader(serviceResponse.data!);
+    return await _buildReader(chapterId, serviceResponse.data!);
   }
 
-  Future<Widget> _buildReader(Uint8List data) async {
+  Future<Widget> _buildReader(String chapterId, Uint8List data) async {
     List<Widget> images = [];
     final directory = await getApplicationDocumentsDirectory();
     final targetPath = directory.path;
@@ -83,7 +94,9 @@ class ChapterReaderScreen extends StatelessWidget {
       }
       final fileName = file.name;
       final data = file.content;
-      final targetFile = File("$targetPath/$fileName")
+      final path = "$targetPath/$chapterId/$fileName";
+      _files.add(path);
+      final targetFile = File(path)
         ..createSync(recursive: true)
         ..writeAsBytesSync(data);
       final image = Image.file(targetFile);
@@ -92,5 +105,11 @@ class ChapterReaderScreen extends StatelessWidget {
     return PageView(
       children: images,
     );
+  }
+
+  void _removeFilesChapters() {
+    for (var file in _files) {
+      File(file).deleteSync();
+    }
   }
 }

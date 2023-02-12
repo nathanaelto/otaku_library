@@ -36,6 +36,7 @@ class CardChapter extends StatelessWidget {
   }
 
   void _goToReadChapter(BuildContext context) {
+    print('${chapter.bookId} ${chapter.id}');
     Navigator.of(context).pushNamed(ChapterReaderScreen.routeName, arguments: chapter.id);
   }
 

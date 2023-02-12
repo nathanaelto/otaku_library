@@ -34,4 +34,8 @@ class AuthenticationDao {
     await SecureStorageService.delete(loginKey);
     await SecureStorageService.delete(passwordKey);
   }
+
+  static Future<void> deletePassword() async {
+    await SecureStorageService.delete(passwordKey);
+  }
 }

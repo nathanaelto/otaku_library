@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 
 import '../../../core/models/user/user.dart';
 import '../../../shared/widgets/otaku_error.dart';
+import '../../profile/change_password.screen.dart';
 
 class ProfileView extends StatelessWidget {
   const ProfileView({Key? key}) : super(key: key);
@@ -45,7 +46,7 @@ class ProfileView extends StatelessWidget {
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Text("Pseudo :${user.pseudo}"),
         const SizedBox(height: 10),
@@ -69,7 +70,7 @@ class ProfileView extends StatelessWidget {
   }
 
   void _changePassword(BuildContext context) {
-    Navigator.of(context).pushNamed(WelcomeScreen.routeName);
+    Navigator.of(context).pushNamed(ChangePasswordScreen.routeName);
   }
 
   void _goToWelcome(BuildContext context) {

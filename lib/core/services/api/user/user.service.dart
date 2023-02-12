@@ -1,4 +1,7 @@
+import 'dart:ffi';
+
 import 'package:OtakuLibrary/core/models/common/service_response.dart';
+import 'package:OtakuLibrary/core/models/user/change_password.dto.dart';
 import 'package:OtakuLibrary/core/models/utils/codable.dart';
 import 'package:OtakuLibrary/core/services/api/secure_api.service.dart';
 import 'package:OtakuLibrary/core/services/env/environment.service.dart';
@@ -22,6 +25,22 @@ class UserService {
       case 200:
         return DecodableTools.decodeFromBodyString<User>(
             response.body, User().decode);
+      default:
+        return ServiceResponse.error('Une erreur est survenue !');
+    }
+  }
+
+  static Future<ServiceResponse<bool>> changePassword(
+      ChangePasswordDto dto) async {
+    final String endPoint = '$_baseEndPoint/change-password';
+    final Map<String, String> headers = await SecureApiService.getHeaders();
+
+    final Response response =
+        await HttpRequest.put(endPoint, headers: headers, body: dto.encode());
+
+    switch (response.statusCode) {
+      case 200:
+        return ServiceResponse.success(true);
       default:
         return ServiceResponse.error('Une erreur est survenue !');
     }

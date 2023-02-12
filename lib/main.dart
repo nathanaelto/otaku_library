@@ -14,6 +14,8 @@ import 'package:OtakuLibrary/welcome.screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'in_app/profile/change_password.screen.dart';
+
 void main() async {
   await EnvironmentService.load();
   WidgetsFlutterBinding.ensureInitialized();
@@ -66,6 +68,7 @@ class OtakuLibraryApp extends StatelessWidget {
         LoginScreen.routeName: (context) => const LoginScreen(),
         RegisterScreen.routeName: (context) => const RegisterScreen(),
         BookScreen.routeName: (context) => const BookScreen(),
+        ChangePasswordScreen.routeName: (context) => ChangePasswordScreen(),
         ChapterReaderScreen.routeName: (context) => ChapterReaderScreen(),
       }
     );

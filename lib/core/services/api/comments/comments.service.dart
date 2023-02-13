@@ -22,7 +22,7 @@ class CommentsService {
         headers: headers, body: createCommentDto.encode());
 
     switch (response.statusCode) {
-      case 200:
+      case 201:
         return DecodableTools.decodeFromBodyString<Comment>(
             response.body, Comment().decode);
       default:

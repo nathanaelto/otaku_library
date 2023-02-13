@@ -9,7 +9,7 @@ class CreateCommentDto implements Encodable {
 
   Map<String, dynamic> toMap() {
     return {
-      'content': comment,
+      'comment': comment,
       'bookId': bookId,
     };
   }

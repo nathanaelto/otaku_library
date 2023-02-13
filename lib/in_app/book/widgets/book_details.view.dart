@@ -4,52 +4,50 @@ import 'package:OtakuLibrary/core/models/books/book_chapters.dart';
 import 'package:OtakuLibrary/core/models/chapters/chapter.dart';
 import 'package:OtakuLibrary/core/models/common/service_response.dart';
 import 'package:OtakuLibrary/core/services/api/books/book.service.dart';
-import 'package:OtakuLibrary/in_app/book/widgets/book_details.view.dart';
 import 'package:OtakuLibrary/in_app/book/widgets/card_chapter.dart';
-import 'package:OtakuLibrary/in_app/book/widgets/comments.view.dart';
 import 'package:OtakuLibrary/shared/widgets/buttons/recall_back_button.dart';
 import 'package:OtakuLibrary/shared/widgets/otaku_error.dart';
 import 'package:flutter/material.dart';
 
-class BookScreen extends StatefulWidget {
-  static const String routeName = '/book';
-
-  const BookScreen({Key? key}) : super(key: key);
+class BookDetailsView extends StatefulWidget {
+  final String bookId;
+  const BookDetailsView({Key? key, required this.bookId}) : super(key: key);
 
   @override
-  State<BookScreen> createState() => _BookScreenState();
+  State<BookDetailsView> createState() => _BookDetailsViewState();
 }
 
-class _BookScreenState extends State<BookScreen> {
+class _BookDetailsViewState extends State<BookDetailsView> {
   @override
   Widget build(BuildContext context) {
-    final String bookId = ModalRoute.of(context)!.settings.arguments as String;
+    final String bookId = widget.bookId;
 
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Book'),
-          bottom: const TabBar(
-            tabs: [
-              Tab(
-                text: 'Details',
-              ),
-              Tab(
-                text: 'Comments',
-              ),
-            ],
-          ),
-        ),
-        body: SafeArea(
-          child: TabBarView(
-            children: [
-              BookDetailsView(bookId: bookId),
-              CommentView(bookId: bookId),
-            ]
-          )
-        ),
-      ),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        FutureBuilder(
+            future: _fetchBook(bookId),
+            builder: (BuildContext context, AsyncSnapshot<Widget> widget) {
+              if (widget.connectionState != ConnectionState.done) {
+                return const Center(
+                  child: CircularProgressIndicator(
+                    color: Colors.blue,
+                  ),
+                );
+              }
+
+              if (widget.hasError) {
+                return const OtakuError();
+              }
+
+              if (widget.data == null) {
+                return const OtakuError();
+              } else {
+                return widget.data!;
+              }
+            }),
+      ],
     );
   }
 
@@ -60,9 +58,9 @@ class _BookScreenState extends State<BookScreen> {
     ]);
 
     ServiceResponse<BookChapters> bookChaptersResponse =
-        responses[0] as ServiceResponse<BookChapters>;
+    responses[0] as ServiceResponse<BookChapters>;
     ServiceResponse<Uint8List> imageResponse =
-        responses[1] as ServiceResponse<Uint8List>;
+    responses[1] as ServiceResponse<Uint8List>;
 
     if (bookChaptersResponse.hasError || imageResponse.hasError) {
       return const OtakuError();

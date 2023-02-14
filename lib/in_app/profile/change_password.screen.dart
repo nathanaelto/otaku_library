@@ -34,7 +34,6 @@ class ChangePasswordScreen extends StatelessWidget {
       },
       child: Scaffold(
         appBar: AppBar(
-          leading: const Icon(Icons.arrow_back),
           title: Text(
             'Changer de mot de passe',
             style: Theme.of(context).textTheme.headline2,

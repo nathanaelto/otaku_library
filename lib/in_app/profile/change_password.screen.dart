@@ -1,6 +1,5 @@
 import 'package:OtakuLibrary/core/models/common/service_response.dart';
 import 'package:OtakuLibrary/core/models/user/change_password.dto.dart';
-import 'package:OtakuLibrary/core/services/api/authentication/authentication.service.dart';
 import 'package:flutter/material.dart';
 
 import '../../authentication/validators/validators.dart';
@@ -85,21 +84,17 @@ class ChangePasswordScreen extends StatelessWidget {
     changePasswordDto.oldPassword = passwordController.text;
     changePasswordDto.newPassword = passwordController2.text;
 
-    ServiceResponse<bool> response = await UserService.changePassword(changePasswordDto);
+    ServiceResponse<bool> response =
+        await UserService.changePassword(changePasswordDto);
 
-    if (response.hasError || response.data == null)
-    {
-      Toast.show("Error", context,
-          duration: 5, backgroundColor: Colors.red);
-    }
-    else
-    {
+    if (response.hasError || response.data == null) {
+      Toast.show("Error", context, duration: 5, backgroundColor: Colors.red);
+    } else {
       await AuthenticationDao.deletePassword();
       Toast.show("Success", context,
           duration: 5, backgroundColor: Colors.green);
 
       Navigator.of(context).pop();
     }
-
   }
 }
